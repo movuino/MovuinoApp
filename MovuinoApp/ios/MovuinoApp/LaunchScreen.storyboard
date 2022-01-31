@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lpiLogo" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-dI-NGJ">
+                                <rect key="frame" x="102" y="590.5" width="171" height="66.5"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="U3G-Db-zgp">
+                                <rect key="frame" x="26" y="147" width="323" height="269"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="269" id="h2D-rS-7b9"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j6y-dI-NGJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="5BX-fp-beM"/>
+                            <constraint firstItem="j6y-dI-NGJ" firstAttribute="centerX" secondItem="U3G-Db-zgp" secondAttribute="centerX" id="6S4-KD-do4"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="j6y-dI-NGJ" secondAttribute="bottom" constant="10" id="jyY-Rd-7X0"/>
+                            <constraint firstItem="U3G-Db-zgp" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="26" id="nBJ-60-jY3"/>
+                            <constraint firstItem="U3G-Db-zgp" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="147" id="pgE-ll-spH"/>
+                            <constraint firstItem="j6y-dI-NGJ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="102" id="yvj-3g-oun"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="lpiLogo" width="66.5" height="66.5"/>
+        <image name="splashScreenLogo" width="455.5" height="256"/>
+    </resources>
+</document>

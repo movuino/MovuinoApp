@@ -1,0 +1,7 @@
+
+const DISCOVERING_PAGE = "Discovering"
+const CONNECTIN_PAGE = "Connecting"
+const HOME_PAGE = "Home"
+const CONNECTION_ERROR_PAGE = "ConnectionError"
+
+export {DISCOVERING_PAGE, CONNECTIN_PAGE, HOME_PAGE, CONNECTION_ERROR_PAGE}
