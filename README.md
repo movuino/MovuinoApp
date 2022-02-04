@@ -7,9 +7,9 @@ A react-native app to show off the capabilities of Movuino
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 
 <p float="left" align="center">
-  <img src="https://github.com/movuino/MovuinoApp/raw/master/images/discovering.PNG" width="300" />
-  <img src="https://github.com/movuino/MovuinoApp/raw/master/images/home.PNG" width="300" /> 
-  <img src="https://github.com/movuino/MovuinoApp/raw/master/images/accel.PNG" width="300" />
+  <img src="https://github.com/movuino/MovuinoApp/raw/master/images/discovering.PNG" width="200" />
+  <img src="https://github.com/movuino/MovuinoApp/raw/master/images/home.PNG" width="200" /> 
+  <img src="https://github.com/movuino/MovuinoApp/raw/master/images/accel.PNG" width="200" />
 </p>
 <p align="center">
   <img src="https://github.com/movuino/MovuinoApp/raw/master/images/accelLandscape.PNG" height="300" />
