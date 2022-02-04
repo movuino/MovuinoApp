@@ -1,29 +1,17 @@
-import { BleManager, Device, Service } from "react-native-ble-plx";
-import BluetoothStateManager from "react-native-bluetooth-state-manager";
+import { Service } from "react-native-ble-plx";
 
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
+import {  NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState, FunctionComponent, useRef, useLayoutEffect, useContext } from "react";
 import {
 	View,
-	Button,
 	StyleSheet,
-	TouchableHighlight,
-	Image,
 	Text,
-	ColorValue,
-	StyleProp,
-	ViewStyle,
-	TouchableOpacity,
-	GestureResponderEvent,
 	ScrollView,
 	ActivityIndicator,
 } from "react-native";
 
 import { SensorsStackParamList } from "./types";
 import ServiceCard from "./ServiceCard";
-import Icon from "react-native-vector-icons/AntDesign";
-import FeatherIcon from "react-native-vector-icons/Feather";
 
 import LinearGradient from "react-native-linear-gradient";
 import MaskedView from "@react-native-community/masked-view";
@@ -59,15 +47,6 @@ const SensorSelectionScreen: FunctionComponent<SensorSelectionScreenProps> = (pr
 			if (!deviceConnected) return;
 			setServices(await deviceConnected.services());
 		})();
-		// await device.discoverAllServicesAndCharacteristics()
-		// const services = await device.services()
-		// let characteristics;
-		// if (services.length)
-		//     characteristics = await device.characteristicsForService(services[0].uuid)
-
-		// console.log('device', device, isConnected)
-		// console.log("services", services)
-		// console.log("characteristics", characteristics)
 	}, []);
 
 	return (

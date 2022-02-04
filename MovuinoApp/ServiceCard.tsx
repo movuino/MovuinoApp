@@ -1,22 +1,13 @@
-import { StyledProps } from "native-base";
-import { background } from "native-base/lib/typescript/theme/styled-system";
-import React, { useEffect, useState, FunctionComponent, useRef, useLayoutEffect } from "react";
+import React, {FunctionComponent} from "react";
 import {
 	View,
-	Button,
 	StyleSheet,
-	TouchableHighlight,
 	Image,
 	Text,
-	ColorValue,
 	StyleProp,
 	ViewStyle,
 	TouchableOpacity,
-	GestureResponderEvent,
 } from "react-native";
-
-import { BleManager, Device } from "react-native-ble-plx";
-import Icon from "react-native-vector-icons/AntDesign";
 
 type ServiceCardProps = {
 	style?: StyleProp<ViewStyle>;
@@ -64,7 +55,6 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		borderWidth: 0.2,
 		borderColor: "#DDD",
-		// justifyContent: "center",
 		alignItems: "center",
 		flexDirection: "row",
 	},

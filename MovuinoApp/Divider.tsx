@@ -6,7 +6,6 @@ import {
 	ViewStyle,
 } from "react-native";
 
-import { LineChart, StackedAreaChart } from 'react-native-svg-charts'
 
 type DividerProps = {
     style?: StyleProp<ViewStyle>;

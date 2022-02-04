@@ -107,7 +107,7 @@ const SensorScreen: FunctionComponent<SensorScreenProps> = (props) => {
         {isLandscape() &&
         <View style={{flex: 1 ,justifyContent: "center"}}>
         <LineChart
-                style={{ height: 200, paddingVertical: 16}}
+                style={{ height: 300, paddingVertical: 16}}
                 data={[{data: data.x, svg: {stroke: "#4A52D1"}}, {data: data.y, svg: {stroke: "#F55A55"}}, {data: data.z, svg: {stroke: "#7DDDE1"}}]}
                 curve={shape.curveNatural}
                 contentInset={{ top: 20, left: 10, right: 10, bottom: 20 }}

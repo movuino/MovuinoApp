@@ -1,27 +1,19 @@
 import {
 	View,
-	Button,
 	StyleSheet,
-	TouchableHighlight,
 	Image,
 	Text,
-	ColorValue,
-	StyleProp,
-	ViewStyle,
 	TouchableOpacity,
-	GestureResponderEvent,
 } from "react-native";
-import React, { FunctionComponent, useContext, useEffect, useState, useRef, useLayoutEffect } from "react";
-import Icon from "react-native-vector-icons/AntDesign";
-import { background } from "native-base/lib/typescript/theme/styled-system";
+import React, { FunctionComponent, useContext, useEffect, useState } from "react";
 
 import AppContext from "./Context";
-import { BleError, Characteristic } from "react-native-ble-plx";
+import { BleError, Device } from "react-native-ble-plx";
 import ScreenHeader from "./ScreenHeader";
 
-import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { DISCOVERING_PAGE, CONNECTIN_PAGE, HOME_PAGE, CONNECTION_ERROR_PAGE } from "./constants";
+import { DISCOVERING_PAGE, CONNECTION_ERROR_PAGE } from "./constants";
 
 const CONNECTION_TIMEOUT_DELAY = 5000;
 
@@ -54,10 +46,19 @@ const ConnectionScreen: FunctionComponent<ConnectionScreenProps> = ({ navigation
 		console.log(info);
 	};
 
+	const onDeviceDisconnect = (error: BleError | null, device: Device) => {
+		console.log("onDisconnect");
+		navigation.reset({
+            index: 0,
+            routes: [{name: 'Discovering'}]
+          })
+	}
+
 	const onConnected = () => {
 		console.log("onConnected");
-        if (deviceSelected)
-            setDeviceConnected(deviceSelected);
+        if (!deviceSelected) return;
+        setDeviceConnected(deviceSelected);
+		deviceSelected.onDisconnected(onDeviceDisconnect)
         navigation.reset({
             index: 0,
             routes: [{name: 'Home'}],

@@ -1,17 +1,10 @@
 import {
 	View,
-	Button,
 	StyleSheet,
-	TouchableHighlight,
-	Image,
 	Text,
-	ColorValue,
-	StyleProp,
-	ViewStyle,
 	TouchableOpacity,
-	GestureResponderEvent,
 } from "react-native";
-import React, { FunctionComponent, useContext, useEffect, useState } from "react";
+import React, { FunctionComponent } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import FeatherIcon from 'react-native-vector-icons/Feather';
 

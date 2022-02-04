@@ -1,10 +1,9 @@
-import React, { useEffect, useState, FunctionComponent, Fragment, createContext } from "react";
+import React, { useState, Fragment } from "react";
 
-import { BleManager, Device, BleError, LogLevel } from "react-native-ble-plx";
-import BluetoothStateManager from "react-native-bluetooth-state-manager";
+import { BleManager, Device, LogLevel } from "react-native-ble-plx";
 
 import { NavigationContainer, DefaultTheme, createNavigationContainerRef } from "@react-navigation/native";
-import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { StatusBar, SafeAreaView } from "react-native";
 
@@ -27,10 +26,6 @@ const navigationRef = createNavigationContainerRef();
 const App = (props: any) => {
 	const [deviceConnected, setDeviceConnected] = useState<Device | null>(null);
 	const [deviceSelected, setDeviceSelected] = useState<Device | null>(null);
-
-	const onBluetoothIsOff = () => {
-		console.log("bluetooth off ");
-	};
 
 	const onDeviceSelected = (device: Device) => {
 		console.log("device Selected", device.name);
