@@ -1,17 +1,18 @@
-
 type RootStackParamList = {
-    Discovering: undefined;
-    Connecting: undefined;
-    Home: undefined,
-    ConnectionError: undefined
-  };
+	Discovering: undefined;
+	Connecting: undefined;
+	Home: undefined;
+	ConnectionError: undefined;
+	SensorHome: undefined;
+	SensorScreen3Axis: {
+		title: string;
+		serviceUUID: string;
+		characteristicUUID: string;
+	};
+	HeartRateScreen: {
+		serviceUUID: string;
+	};
+	Test: undefined,
+};
 
-  type SensorsStackParamList = {
-    SensorHome: undefined;
-    SensorScreen3Axis: {
-        title: string,
-        serviceUUID: string,
-    };
-  };
-
-export type {RootStackParamList, SensorsStackParamList}
+export type { RootStackParamList };

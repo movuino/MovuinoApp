@@ -8,7 +8,7 @@ import * as shape from 'd3-shape'
 import { LineChart, StackedAreaChart } from 'react-native-svg-charts'
 
 type ChartCardProps = {
-    data: number[];
+    data: any[];
     lineColor: string;
 }
 

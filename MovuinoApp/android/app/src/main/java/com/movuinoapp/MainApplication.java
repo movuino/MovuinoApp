@@ -5,7 +5,7 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import org.wonday.orientation.OrientationPackage;
-import com.github.yamill.orientation.OrientationPackage;
+// import com.github.yamill.orientation.OrientationPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactInstanceManager;

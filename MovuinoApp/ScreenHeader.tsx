@@ -11,7 +11,6 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 type ScreenHeaderProps = {
     title?: string;
     onBack: () => void;
-    showSettings?: boolean; 
 }
 
 const ScreenHeader:FunctionComponent<ScreenHeaderProps> = props => {
@@ -19,6 +18,7 @@ const ScreenHeader:FunctionComponent<ScreenHeaderProps> = props => {
     const styles = StyleSheet.create({
         container: {
           marginBottom: 30,
+          marginTop: 10,
         },
         titleWrapper: {
             marginTop: 10,
@@ -45,11 +45,7 @@ const ScreenHeader:FunctionComponent<ScreenHeaderProps> = props => {
             </View>
             <View style={{flex: 1}}></View>
             <View style={{marginRight: 10, width: 60, height: 40, alignItems: "center", justifyContent:"center"}}>
-                {(props.showSettings === undefined || props.showSettings) && 
-                <TouchableOpacity onPress={() => {}} activeOpacity={0.3}>
-                    <FeatherIcon name='settings' size={25}/>
-                </TouchableOpacity>
-                }
+               
             </View>
         </View>
         {

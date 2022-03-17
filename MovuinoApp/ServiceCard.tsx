@@ -14,7 +14,7 @@ type ServiceCardProps = {
 	uuid: string;
 	title: string;
 	height: number;
-	image: "accel" | "gyro" | "magneto" | "shield";
+	image: "accel" | "gyro" | "magneto" | "heart" | "shield";
     onPress: () => void;
 };
 
@@ -23,6 +23,7 @@ const ServiceCard: FunctionComponent<ServiceCardProps> = (props) => {
 		if (props.image === "accel") return require("./assets/images/boxe.png");
 		else if (props.image === "gyro") return require("./assets/images/gyro.png");
 		else if (props.image === "magneto") return require("./assets/images/compas.png");
+		else if (props.image === "heart") return require("./assets/images/heart-with-pulse.png");
 		else return require("./assets/images/shield.png");
 	};
 

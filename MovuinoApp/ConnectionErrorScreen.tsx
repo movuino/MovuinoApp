@@ -18,13 +18,12 @@ type ConnectionErrorScreenProps = NativeStackScreenProps<RootStackParamList, "Co
 const ConnectionErrorScreen: FunctionComponent<ConnectionErrorScreenProps> = (props) => {
 	return (
 		<View style={styles.container}>
-			<ScreenHeader
-				onBack={() => {
-					props.navigation.navigate(DISCOVERING_PAGE);
-				}}
-			></ScreenHeader>
+			<View style={{justifyContent: 'center', alignItems: "center"}}>
 			<Image source={require("./assets/images/error_bubble.png")}></Image>
-			<Text>Error</Text>
+			<Text style={styles.oops}>Oops !</Text>
+			<Text style={styles.text}>Something wrong happend while trying to connect</Text>
+			</View>
+			
 		</View>
 	);
 };
@@ -33,6 +32,18 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
+	oops: {
+		fontFamily: "Nunito",
+		fontSize: 28,
+		textAlign: "center",
+		marginTop: '10%'
+	},
+	text: {
+		fontFamily: "Nunito",
+		fontSize: 24,
+		textAlign: "center",
+		marginTop: '5%'
+	}
 });
 
 export default ConnectionErrorScreen;

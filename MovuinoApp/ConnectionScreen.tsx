@@ -5,7 +5,7 @@ import {
 	Text,
 	TouchableOpacity,
 } from "react-native";
-import React, { FunctionComponent, useContext, useEffect, useState } from "react";
+import React, { FunctionComponent, useContext, useEffect, useState, useRef } from "react";
 
 import AppContext from "./Context";
 import { BleError, Device } from "react-native-ble-plx";
@@ -29,8 +29,10 @@ type ConnectionScreenProps = NativeStackScreenProps<RootStackParamList, "Connect
 const ConnectionScreen: FunctionComponent<ConnectionScreenProps> = ({ navigation, route }) => {
 	const { deviceSelected, setDeviceConnected } = useContext(AppContext);
 	const [isConnected, setIsConnected] = useState(false);
+	const success = useRef<boolean>()
 
 	const onConnectionCancel = () => {
+		if (success.current) return;
 		console.log("cancel");
 		if (deviceSelected === null) return;
 		deviceSelected.cancelConnection().catch((error) => {
@@ -55,6 +57,7 @@ const ConnectionScreen: FunctionComponent<ConnectionScreenProps> = ({ navigation
 	}
 
 	const onConnected = () => {
+		success.current = true;
 		console.log("onConnected");
         if (!deviceSelected) return;
         setDeviceConnected(deviceSelected);
@@ -85,11 +88,12 @@ const ConnectionScreen: FunctionComponent<ConnectionScreenProps> = ({ navigation
 	};
 
 	useEffect(() => {
+		success.current = false;
 		connect();
+		return onConnectionCancel
 	}, []);
 	return (
 		<View style={styles.container}>
-			<ScreenHeader onBack={onConnectionCancel} showSettings={false}/>
 			<View style={styles.textWrapper}>
 				<Text style={styles.title}>Connecting to</Text>
 				<Text style={styles.deviceName}>{deviceSelected ? deviceSelected.name : ""}</Text>

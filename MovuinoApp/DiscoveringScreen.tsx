@@ -4,7 +4,7 @@ import { Device } from "react-native-ble-plx";
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { View, FlatList, StyleSheet, TouchableHighlight, Image, Text, RefreshControl } from "react-native";
+import { View, FlatList, StyleSheet, TouchableHighlight, Image, Text, RefreshControl, Platform, PermissionsAndroid } from "react-native";
 
 import AppContext from "./Context";
 import LinearGradient from "react-native-linear-gradient";
@@ -14,23 +14,7 @@ import { CONNECTIN_PAGE } from "./constants";
 
 import { RootStackParamList } from "./types";
 import Orientation from 'react-native-orientation-locker';
-
-function useInterval(callback: () => void, delay: number | null) {
-	const savedCallback = useRef(callback);
-
-	useLayoutEffect(() => {
-		savedCallback.current = callback;
-	}, [callback]);
-
-	useEffect(() => {
-		if (!delay && delay !== 0) {
-			return;
-		}
-
-		const id = setInterval(() => savedCallback.current(), delay);
-		return () => clearInterval(id);
-	}, [delay]);
-}
+import useInterval from './useInterval'
 
 type ListItemProps = {
 	title: String | null;
@@ -69,9 +53,32 @@ const DummySpacer: FunctionComponent<DummySpacerProps> = (props) => {
 	return <View style={{ height: props.height }}></View>;
 };
 
+async function requestLocationPermission() {
+	if (Platform.OS != 'android') return;
+	try {
+	  const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
+		title: 'Location permission for bluetooth scanning',
+		message: 'Location permission must be granted to use Bluetooth LE',
+		buttonNeutral: 'Ask Me Later',
+		buttonNegative: 'Cancel',
+		buttonPositive: 'OK',
+	  });
+	  if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+		console.log('Location permission for bluetooth scanning granted');
+		return true;
+	  } else {
+		console.log('Location permission for bluetooth scanning revoked');
+		return false;
+	  }
+	} catch (err) {
+	  console.warn(err);
+	  return false;
+	}
+  }
+
 type DiscoveringDeviceScreenProps = NativeStackScreenProps<RootStackParamList, "Discovering">;
 
-const BleDiscoveringScreen = ({ route, navigation }: DiscoveringDeviceScreenProps) => {
+const BleDiscoveringScreen: FunctionComponent<DiscoveringDeviceScreenProps> = (props) => {
 	const { bleManager, setDeviceSelected, deviceConnected } = useContext(AppContext); // Retrieve BleManager from Context
 	const [loadingDots, setLoadingDots] = useState(1); // Define State used to show then ... animation
 	const [devicesDiscovered, setDevicesDiscovered] = useState<Device[]>([]); // Array containing the devices discovered (used to render the list)
@@ -80,6 +87,7 @@ const BleDiscoveringScreen = ({ route, navigation }: DiscoveringDeviceScreenProp
 	useInterval(() => setLoadingDots((curr) => (curr < 3 ? loadingDots + 1 : 1)), 1000); // Interval used for the ... animation
 
 	const scan = async () => {
+		const perm = await requestLocationPermission();
 		if (deviceConnected && await deviceConnected.isConnected()) await deviceConnected.cancelConnection();
 		bleManager?.startDeviceScan(null, null, (error, device) => {
 			if (error) {
@@ -96,7 +104,7 @@ const BleDiscoveringScreen = ({ route, navigation }: DiscoveringDeviceScreenProp
 		});
 	};
 	useEffect(() => {
-    Orientation.lockToPortrait();
+    	Orientation.lockToPortrait();
 		const subscription = bleManager?.onStateChange((state) => {
 			if (state === "PoweredOn") {
 				scan();
@@ -113,7 +121,7 @@ const BleDiscoveringScreen = ({ route, navigation }: DiscoveringDeviceScreenProp
 		// Function called when a list item is pressed
 		bleManager?.stopDeviceScan(); //  Stop the scan and set deviceSelected in the context
 		setDeviceSelected(device);
-		navigation.navigate(CONNECTIN_PAGE as never, {} as never); // TS typing bug => hacky patch :D
+		props.navigation.navigate(CONNECTIN_PAGE as never, {} as never); // TS typing bug => hacky patch :D
 	};
 
 	const onRefresh = () => {
@@ -131,7 +139,6 @@ const BleDiscoveringScreen = ({ route, navigation }: DiscoveringDeviceScreenProp
 			<View style={styles.header}>
 				<Image source={require("./assets/images/bluetoothConnectingScreen.png")} />
 				<Text style={styles.title}>Please select your Movuino</Text>
-				<Text style={styles.info}>I don't have a movuino to test on</Text>
 				<Text style={styles.subtitle}>Discovering {".".repeat(loadingDots)}</Text>
 			</View>
 			<View style={styles.list}>
